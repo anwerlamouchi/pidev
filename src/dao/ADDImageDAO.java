@@ -4,12 +4,15 @@
  */
 package dao;
 
+import java.sql.Statement;
+
 /**
  *
  * @author anwer
  */
 public class ADDImageDAO {
-    
+    private static ADDImageDAO instance;
+    private Statement statement;
     
     
 }
