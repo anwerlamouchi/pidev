@@ -4,7 +4,9 @@
  */
 package Graphique;
 
+import dao.AdministrateurDAO;
 import de.javasoft.plaf.synthetica.SyntheticaBlueLightLookAndFeel;
+import entities.Administrateur;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -12,6 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import util.TableAdmin;
+
+
+
 
 /**
  *
@@ -56,40 +62,36 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jB_refrech = new javax.swing.JButton();
+        jB_modifier = new javax.swing.JButton();
+        jB_ajouter = new javax.swing.JButton();
+        jB_suuprimer = new javax.swing.JButton();
+        jB_statistique = new javax.swing.JButton();
+        jB_clear = new javax.swing.JButton();
+        jTF_rechercher = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTF_prenom = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        jTF_password = new javax.swing.JTextField();
+        jTF_nom = new javax.swing.JTextField();
+        jTF_telephone = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        jTF_email = new javax.swing.JTextField();
+        jTF_postal = new javax.swing.JTextField();
+        jTF_login = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jLab_rechercher = new javax.swing.JLabel();
+        jB_deconexion = new javax.swing.JButton();
+        jB_imprimer = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_date = new javax.swing.JMenu();
         menu_heure = new javax.swing.JMenu();
@@ -102,59 +104,69 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setLayout(null);
 
-        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/refresh-reload-icone-8719-16.png"))); // NOI18N
-        jButton6.setText("Refresh");
-        jButton6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jButton6);
-        jButton6.setBounds(20, 100, 90, 23);
+        jB_refrech.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_refrech.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/refresh-reload-icone-8719-16.png"))); // NOI18N
+        jB_refrech.setText("Refresh");
+        jB_refrech.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.add(jB_refrech);
+        jB_refrech.setBounds(20, 100, 90, 23);
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/edit-script-icone-3784-16.png"))); // NOI18N
-        jButton2.setText("Modifier");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jButton2);
-        jButton2.setBounds(20, 40, 90, 23);
+        jB_modifier.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_modifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/edit-script-icone-3784-16.png"))); // NOI18N
+        jB_modifier.setText("Modifier");
+        jB_modifier.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.add(jB_modifier);
+        jB_modifier.setBounds(20, 40, 90, 23);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/ajouter-icone-5107-16.png"))); // NOI18N
-        jButton1.setText("Ajouter");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jButton1);
-        jButton1.setBounds(20, 10, 90, 20);
-
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/fermer-croix-supprimer-erreurs-sortie-icone-4368-16.png"))); // NOI18N
-        jButton4.setText("Supprimer");
-        jButton4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jButton4);
-        jButton4.setBounds(20, 70, 90, 23);
-
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon("D:\\image pidf\\diagramme-a-barres-icone-9116-16.png")); // NOI18N
-        jButton5.setText("Statistique");
-        jButton5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+        jB_ajouter.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_ajouter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/ajouter-icone-5107-16.png"))); // NOI18N
+        jB_ajouter.setText("Ajouter");
+        jB_ajouter.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jB_ajouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_ajouterActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5);
-        jButton5.setBounds(20, 160, 90, 23);
+        jPanel2.add(jB_ajouter);
+        jB_ajouter.setBounds(20, 10, 90, 20);
 
-        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon("D:\\image pidf\\clear-brush-broom-sweeping-change-icone-7230-16.png")); // NOI18N
-        jButton8.setText("Clear");
-        jButton8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.add(jButton8);
-        jButton8.setBounds(20, 130, 90, 23);
+        jB_suuprimer.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_suuprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/fermer-croix-supprimer-erreurs-sortie-icone-4368-16.png"))); // NOI18N
+        jB_suuprimer.setText("Supprimer");
+        jB_suuprimer.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.add(jB_suuprimer);
+        jB_suuprimer.setBounds(20, 70, 90, 23);
+
+        jB_statistique.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_statistique.setIcon(new javax.swing.ImageIcon("D:\\image pidf\\diagramme-a-barres-icone-9116-16.png")); // NOI18N
+        jB_statistique.setText("Statistique");
+        jB_statistique.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jB_statistique.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_statistiqueMouseClicked(evt);
+            }
+        });
+        jPanel2.add(jB_statistique);
+        jB_statistique.setBounds(20, 160, 90, 23);
+
+        jB_clear.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_clear.setIcon(new javax.swing.ImageIcon("D:\\image pidf\\clear-brush-broom-sweeping-change-icone-7230-16.png")); // NOI18N
+        jB_clear.setText("Clear");
+        jB_clear.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jB_clear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_clearActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jB_clear);
+        jB_clear.setBounds(20, 130, 90, 23);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(10, 70, 120, 200);
 
-        jTextField1.setText("rechercher....");
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(10, 10, 110, 20);
+        jTF_rechercher.setText("rechercher....");
+        jPanel1.add(jTF_rechercher);
+        jTF_rechercher.setBounds(10, 10, 110, 20);
 
         jLabel3.setText("Commande");
         jPanel1.add(jLabel3);
@@ -163,37 +175,14 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Administrator id", "Nom", "Prénon", "date de naissance", "Téléphone", "Email", "Adresse Postal", "login", "password"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        jTable1.setModel(new TableAdmin());
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 10, 550, 120);
+        jScrollPane1.setBounds(20, 20, 550, 110);
 
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(null);
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel4.setText("Administrateur id");
-        jPanel4.add(jLabel4);
-        jLabel4.setBounds(10, 10, 100, 14);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Nom");
@@ -205,79 +194,70 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
         jPanel4.add(jLabel6);
         jLabel6.setBounds(10, 70, 49, 14);
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel7.setText("Date naissance");
-        jPanel4.add(jLabel7);
-        jLabel7.setBounds(10, 100, 80, 14);
-
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setText("EmailL");
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(10, 160, 50, 20);
+        jLabel8.setBounds(10, 130, 50, 20);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel9.setText("Login");
         jPanel4.add(jLabel9);
-        jLabel9.setBounds(10, 220, 34, 14);
+        jLabel9.setBounds(10, 190, 34, 14);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel10.setText("Password");
         jPanel4.add(jLabel10);
-        jLabel10.setBounds(10, 250, 70, 14);
-        jPanel4.add(jTextField2);
-        jTextField2.setBounds(110, 10, 100, 20);
-        jPanel4.add(jTextField3);
-        jTextField3.setBounds(110, 70, 100, 20);
-        jPanel4.add(jTextField4);
-        jTextField4.setBounds(110, 100, 100, 20);
+        jLabel10.setBounds(10, 220, 70, 14);
+        jPanel4.add(jTF_prenom);
+        jTF_prenom.setBounds(110, 70, 100, 20);
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel11.setText("Téléphone");
         jPanel4.add(jLabel11);
-        jLabel11.setBounds(10, 130, 70, 14);
-        jPanel4.add(jTextField5);
-        jTextField5.setBounds(110, 250, 100, 20);
-        jPanel4.add(jTextField6);
-        jTextField6.setBounds(110, 40, 100, 20);
-        jPanel4.add(jTextField8);
-        jTextField8.setBounds(110, 130, 100, 20);
+        jLabel11.setBounds(10, 100, 70, 14);
+        jPanel4.add(jTF_password);
+        jTF_password.setBounds(110, 220, 100, 20);
+        jPanel4.add(jTF_nom);
+        jTF_nom.setBounds(110, 40, 100, 20);
+        jPanel4.add(jTF_telephone);
+        jTF_telephone.setBounds(110, 100, 100, 20);
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel12.setText("Adresse Postal");
         jPanel4.add(jLabel12);
-        jLabel12.setBounds(10, 200, 90, 14);
-        jPanel4.add(jTextField9);
-        jTextField9.setBounds(110, 160, 100, 20);
-        jPanel4.add(jTextField10);
-        jTextField10.setBounds(110, 190, 100, 20);
-        jPanel4.add(jTextField11);
-        jTextField11.setBounds(110, 220, 100, 20);
+        jLabel12.setBounds(0, 160, 90, 14);
+        jPanel4.add(jTF_email);
+        jTF_email.setBounds(110, 130, 100, 20);
+        jPanel4.add(jTF_postal);
+        jTF_postal.setBounds(110, 160, 100, 20);
+        jPanel4.add(jTF_login);
+        jTF_login.setBounds(110, 190, 100, 20);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Administrateur information");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel2.setText("Rechercher");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLab_rechercher.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLab_rechercher.setText("Rechercher");
+        jLab_rechercher.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon("D:\\image pidf\\de-bureau-des-ameliorations-icone-4229-16.png")); // NOI18N
-        jButton3.setText("Déconnexion");
-        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jB_deconexion.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_deconexion.setIcon(new javax.swing.ImageIcon("D:\\image pidf\\de-bureau-des-ameliorations-icone-4229-16.png")); // NOI18N
+        jB_deconexion.setText("Déconnexion");
+        jB_deconexion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jB_deconexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                jB_deconexionMouseClicked(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/imprimante-icone-7917-16.png"))); // NOI18N
-        jButton7.setText("Imprimer");
-        jButton7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        jB_imprimer.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jB_imprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imag/imprimante-icone-7917-16.png"))); // NOI18N
+        jB_imprimer.setText("Imprimer");
+        jB_imprimer.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jB_imprimer.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
+                jB_imprimerMouseClicked(evt);
             }
         });
 
@@ -298,14 +278,14 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jB_deconexion, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 203, Short.MAX_VALUE))
+                        .addComponent(jB_imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 458, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLab_rechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,13 +297,13 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jB_deconexion, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(jB_imprimer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLab_rechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,25 +315,43 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+    private void jB_imprimerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_imprimerMouseClicked
         // TODO add your handling code here:
        
-    }//GEN-LAST:event_jButton7MouseClicked
+    }//GEN-LAST:event_jB_imprimerMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void jB_statistiqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_statistiqueMouseClicked
         // TODO add your handling code here:
          Chart ins = new  Chart();
         ins.setVisible(true);
         this.setVisible(false);
         pack();
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_jB_statistiqueMouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-       Authentification ins=new Authentification();
-       ins.setVisible(true);
-       this.setVisible(false);
-        pack();
-    }//GEN-LAST:event_jButton3MouseClicked
+    private void jB_deconexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_deconexionMouseClicked
+       
+    }//GEN-LAST:event_jB_deconexionMouseClicked
+
+    private void jB_ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_ajouterActionPerformed
+        // TODO add your handling code here:
+      
+       Administrateur administateur=new Administrateur(WIDTH,jTF_nom.getText() , jTF_prenom.getText(), jTF_telephone.getText(), jTF_email.getText(), jTF_postal.getText(), jTF_login.getText(), jTF_password.getText());
+        AdministrateurDAO administrateurDAO=new AdministrateurDAO();
+        administrateurDAO.ajoutAdministrateur(administateur);
+    }//GEN-LAST:event_jB_ajouterActionPerformed
+
+    private void jB_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_clearActionPerformed
+        // TODO add your handling code here:
+        jTF_nom.setText("");
+        jTF_prenom.setText("");
+        jTF_telephone.setText("");
+        jTF_email.setText("");
+        jTF_postal.setText("");
+         jTF_login.setText("");
+         jTF_password.setText("");
+        
+                
+    }//GEN-LAST:event_jB_clearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,13 +369,7 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SuperAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SuperAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SuperAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SuperAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -399,24 +391,22 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jB_ajouter;
+    private javax.swing.JButton jB_clear;
+    private javax.swing.JButton jB_deconexion;
+    private javax.swing.JButton jB_imprimer;
+    private javax.swing.JButton jB_modifier;
+    private javax.swing.JButton jB_refrech;
+    private javax.swing.JButton jB_statistique;
+    private javax.swing.JButton jB_suuprimer;
+    private javax.swing.JLabel jLab_rechercher;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
@@ -425,17 +415,15 @@ int day=cal.get(Calendar.DAY_OF_MONTH);
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTF_email;
+    private javax.swing.JTextField jTF_login;
+    private javax.swing.JTextField jTF_nom;
+    private javax.swing.JTextField jTF_password;
+    private javax.swing.JTextField jTF_postal;
+    private javax.swing.JTextField jTF_prenom;
+    private javax.swing.JTextField jTF_rechercher;
+    private javax.swing.JTextField jTF_telephone;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JMenu menu_date;
     private javax.swing.JMenu menu_heure;
     // End of variables declaration//GEN-END:variables
