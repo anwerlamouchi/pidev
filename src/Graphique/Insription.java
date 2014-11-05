@@ -4,10 +4,20 @@
  */
 package Graphique;
 
+import dao.AdministrateurDAO;
+import dao.ClientDAO;
+import dao.GerantDAO;
 import de.javasoft.plaf.synthetica.SyntheticaBlueLightLookAndFeel;
+import entities.Administrateur;
+import entities.Client;
+import entities.Gerant;
+import exception.AdminException;
+
 import java.text.ParseException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -38,21 +48,22 @@ public class Insription extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        TfPrenom = new javax.swing.JTextField();
+        TfLogin = new javax.swing.JTextField();
+        TfAdr = new javax.swing.JTextField();
+        TfEmail = new javax.swing.JTextField();
+        TfTel = new javax.swing.JTextField();
+        TfNom = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel13 = new javax.swing.JLabel();
+        cmdValiderInscri = new javax.swing.JButton();
+        motDePasse2 = new javax.swing.JPasswordField();
+        combox1 = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
+        TfMP1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,99 +74,95 @@ public class Insription extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(10, 20, 43, 18);
+        jLabel1.setBounds(10, 40, 43, 18);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Prénom");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(10, 50, 63, 22);
+        jLabel2.setBounds(0, 70, 63, 22);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Téléphone");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 117, 90, 17);
+        jLabel4.setBounds(0, 100, 90, 17);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Adresse Postal");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(10, 176, 100, 17);
+        jLabel5.setBounds(0, 170, 100, 17);
+
+        jLabel3.setText("Catégorie");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(10, 10, 60, 20);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("E-mail");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(10, 142, 60, 20);
+        jLabel6.setBounds(10, 130, 60, 20);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Mot de passe");
+        jLabel7.setText(" Retaper mot de passe");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, 230, 100, 17);
+        jLabel7.setBounds(0, 270, 140, 17);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Login");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(10, 207, 60, 17);
+        jLabel9.setBounds(10, 200, 60, 20);
 
-        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Date naissance");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(10, 80, 110, 17);
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        TfPrenom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                TfPrenomActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(120, 50, 120, 20);
+        jPanel1.add(TfPrenom);
+        TfPrenom.setBounds(170, 70, 120, 20);
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        TfLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                TfLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(120, 200, 120, 20);
+        jPanel1.add(TfLogin);
+        TfLogin.setBounds(170, 200, 120, 20);
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        TfAdr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                TfAdrActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8);
-        jTextField8.setBounds(120, 170, 120, 20);
+        jPanel1.add(TfAdr);
+        TfAdr.setBounds(170, 170, 120, 20);
 
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        TfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                TfEmailActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField10);
-        jTextField10.setBounds(120, 140, 120, 20);
+        jPanel1.add(TfEmail);
+        TfEmail.setBounds(170, 140, 120, 20);
 
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        TfTel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                TfTelActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField11);
-        jTextField11.setBounds(120, 110, 120, 20);
+        jPanel1.add(TfTel);
+        TfTel.setBounds(170, 110, 120, 20);
 
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+        TfNom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
+                TfNomActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField12);
-        jTextField12.setBounds(120, 20, 120, 20);
-        jPanel1.add(jDateChooser1);
-        jDateChooser1.setBounds(120, 80, 120, 20);
+        jPanel1.add(TfNom);
+        TfNom.setBounds(170, 40, 120, 20);
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,14 +170,40 @@ public class Insription extends javax.swing.JFrame {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(330, 50, 230, 40);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Valider");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(500, 250, 100, 30);
-        jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(121, 230, 120, 20);
-        jPanel1.add(jLabel13);
-        jLabel13.setBounds(-10, -10, 630, 310);
+        cmdValiderInscri.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cmdValiderInscri.setText("Valider");
+        cmdValiderInscri.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmdValiderInscriMouseClicked(evt);
+            }
+        });
+        cmdValiderInscri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdValiderInscriActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdValiderInscri);
+        cmdValiderInscri.setBounds(500, 250, 100, 30);
+
+        motDePasse2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                motDePasse2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(motDePasse2);
+        motDePasse2.setBounds(170, 270, 120, 20);
+
+        combox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "administrateur", "client", "gerant" }));
+        jPanel1.add(combox1);
+        combox1.setBounds(170, 10, 110, 20);
+
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Mot de passe");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(10, 230, 100, 17);
+        jPanel1.add(TfMP1);
+        TfMP1.setBounds(170, 240, 120, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,36 +214,402 @@ public class Insription extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+    private void TfNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfNomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
+    }//GEN-LAST:event_TfNomActionPerformed
 
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+    private void TfTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfTelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_TfTelActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void TfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_TfEmailActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void TfAdrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfAdrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_TfAdrActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void TfLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_TfLoginActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void TfPrenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TfPrenomActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_TfPrenomActionPerformed
+
+    private void cmdValiderInscriMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdValiderInscriMouseClicked
+              // TODO add your handling code here:
+               
+    }//GEN-LAST:event_cmdValiderInscriMouseClicked
+
+    private void cmdValiderInscriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdValiderInscriActionPerformed
+        // TODO add your handling code here:
+        if (combox1.getSelectedItem().toString().equals("administrateur")) { 
+            
+            
+            Administrateur admin = new Administrateur ();
+          admin.setPrenom(TfPrenom.getText().toString());
+        admin.setNom(TfNom.getText().toString());
+        admin.setEmail(TfEmail.getText().toString());
+        // admin.setDateNaissance(tfDateChooser1.getDateFormatString());
+    admin.setTelephone(TfTel.getText());
+        admin.setPass(TfMP1.getText().toString());
+        admin.setAdresse(TfAdr.getText().toString());
+        admin.setTelephone(TfTel.getText());
+     
+         admin.setLogin(TfLogin.getText().toString());
+        
+        String motdepasse2 = motDePasse2.getText().toString();
+        
+        
+        AdministrateurDAO admindao = new AdministrateurDAO();
+       
+        
+
+        try {
+
+            if (admin.getNom().equals("")) {
+                throw new AdminException("svp ! tapez votre nom");
+            }
+            
+            if (admin.getNom().length() > 30) {
+                throw new AdminException("nom est trop long");
+            }
+            if (admin.getPrenom().equals("")) {
+
+                throw new AdminException("Tapez votre Prenom svp ");
+            }
+            if (admin.getPrenom().length() > 30) {
+                throw new AdminException("prenom est trop long");
+            }
+            if (admin.getTelephone().equals("")) {
+
+                throw new AdminException("Tapez votre Telephone svp ");
+            }
+            if (admin.getTelephone().length() > 30) {
+                throw new AdminException("Telephone est trop long");
+            }
+            if (admin.getEmail().equals("")) {
+
+                throw new AdminException("Tapez votre Emailsvp ");
+            }
+            if (admin.getEmail().length() > 30) {
+                throw new AdminException("Email est trop long");
+            }
+             if (admin.getAdresse().equals("")) {
+
+                throw new AdminException("Tapez votre Adresse svp ");
+            }
+            if (admin.getAdresse().length() > 30) {
+                throw new AdminException("Adresse est trop long");
+            }
+            
+             if (admin.getLogin().equals("")) {
+                throw new AdminException("tapez votre Login de passe svp ");
+            }
+            if (admin.getLogin().length() > 30) {
+                throw new AdminException("login est trop long");
+            }
+              if (admin.getPass().equals("")) {
+                throw new AdminException("tapez votre mot de passe svp ");
+            }
+            if (admin.getPass().length() > 30) {
+                throw new AdminException("mot de passe  est trop long");
+            }
+           
+            if (motdepasse2.equals("")) {
+                throw new AdminException("retapez votre  mot de passe svp ");
+            }
+            if (!motdepasse2.equals(admin.getPass())) {
+                throw new AdminException(" les deux mot de passe ne sont pas identique");
+            }
+            
+            admindao.ajoutAdministrateur(admin);
+            JOptionPane.showMessageDialog(null, "admin ajouter", "OK", JOptionPane.OK_CANCEL_OPTION);
+            cmdValiderInscri.setEnabled(true);//ouis chager fase
+         
+        } catch (AdminException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        } 
+         if (combox1.getSelectedItem().toString().equals("client")) { 
+            
+            
+           Client client= new Client();
+          client.setPrenom(TfPrenom.getText().toString());
+        client.setNom(TfNom.getText().toString());
+        client.setEmail(TfEmail.getText().toString());
+        // admin.setDateNaissance(tfDateChooser1.getDateFormatString());
+    client.setTelephone(TfTel.getText());
+        client.setPass(TfMP1.getText().toString());
+        client.setAdresse(TfAdr.getText().toString());
+        client.setTelephone(TfTel.getText());
+     
+         client.setLogin(TfLogin.getText().toString());
+        
+        String motdepasse2 = motDePasse2.getText().toString();
+        
+        
+       ClientDAO admindao = new ClientDAO ();
+       
+        
+
+        try {
+
+            if (client.getNom().equals("")) {
+                throw new AdminException("svp ! tapez votre nom");
+            }
+            
+            if (client.getNom().length() > 30) {
+                throw new AdminException("nom est trop long");
+            }
+            if (client.getPrenom().equals("")) {
+
+                throw new AdminException("Tapez votre Prenom svp ");
+            }
+            if (client.getPrenom().length() > 30) {
+                throw new AdminException("prenom est trop long");
+            }
+            if (client.getTelephone().equals("")) {
+
+                throw new AdminException("Tapez votre Telephone svp ");
+            }
+            if (client.getTelephone().length() > 30) {
+                throw new AdminException("Telephone est trop long");
+            }
+            if (client.getEmail().equals("")) {
+
+                throw new AdminException("Tapez votre Emailsvp ");
+            }
+            if (client.getEmail().length() > 30) {
+                throw new AdminException("Email est trop long");
+            }
+             if (client.getAdresse().equals("")) {
+
+                throw new AdminException("Tapez votre Adresse svp ");
+            }
+            if (client.getAdresse().length() > 30) {
+                throw new AdminException("Adresse est trop long");
+            }
+            
+             if (client.getLogin().equals("")) {
+                throw new AdminException("tapez votre Login de passe svp ");
+            }
+            if (client.getLogin().length() > 30) {
+                throw new AdminException("login est trop long");
+            }
+              if (client.getPass().equals("")) {
+                throw new AdminException("tapez votre mot de passe svp ");
+            }
+            if (client.getPass().length() > 30) {
+                throw new AdminException("mot de passe  est trop long");
+            }
+           
+            if (motdepasse2.equals("")) {
+                throw new AdminException("retapez votre  mot de passe svp ");
+            }
+            if (!motdepasse2.equals(client.getPass())) {
+                throw new AdminException(" les deux mot de passe ne sont pas identique");
+            }
+            
+            admindao.ajoutClient(client);
+            JOptionPane.showMessageDialog(null, "client ajouter", "OK", JOptionPane.OK_CANCEL_OPTION);
+            cmdValiderInscri.setEnabled(true);//ouis chager false
+         
+        } catch (AdminException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        }           
+                if (combox1.getSelectedItem().toString().equals("administrateur")) { 
+            
+            
+            Administrateur admin = new Administrateur ();
+          admin.setPrenom(TfPrenom.getText().toString());
+        admin.setNom(TfNom.getText().toString());
+        admin.setEmail(TfEmail.getText().toString());
+        // admin.setDateNaissance(tfDateChooser1.getDateFormatString());
+    admin.setTelephone(TfTel.getText());
+        admin.setPass(TfMP1.getText().toString());
+        admin.setAdresse(TfAdr.getText().toString());
+        admin.setTelephone(TfTel.getText());
+     
+         admin.setLogin(TfLogin.getText().toString());
+        
+        String motdepasse2 = motDePasse2.getText().toString();
+        
+        
+        AdministrateurDAO admindao = new AdministrateurDAO();
+       
+        
+
+        try {
+
+            if (admin.getNom().equals("")) {
+                throw new AdminException("svp ! tapez votre nom");
+            }
+            
+            if (admin.getNom().length() > 30) {
+                throw new AdminException("nom est trop long");
+            }
+            if (admin.getPrenom().equals("")) {
+
+                throw new AdminException("Tapez votre Prenom svp ");
+            }
+            if (admin.getPrenom().length() > 30) {
+                throw new AdminException("prenom est trop long");
+            }
+            if (admin.getTelephone().equals("")) {
+
+                throw new AdminException("Tapez votre Telephone svp ");
+            }
+            if (admin.getTelephone().length() > 30) {
+                throw new AdminException("Telephone est trop long");
+            }
+            if (admin.getEmail().equals("")) {
+
+                throw new AdminException("Tapez votre Emailsvp ");
+            }
+            if (admin.getEmail().length() > 30) {
+                throw new AdminException("Email est trop long");
+            }
+             if (admin.getAdresse().equals("")) {
+
+                throw new AdminException("Tapez votre Adresse svp ");
+            }
+            if (admin.getAdresse().length() > 30) {
+                throw new AdminException("Adresse est trop long");
+            }
+            
+             if (admin.getLogin().equals("")) {
+                throw new AdminException("tapez votre Login de passe svp ");
+            }
+            if (admin.getLogin().length() > 30) {
+                throw new AdminException("login est trop long");
+            }
+              if (admin.getPass().equals("")) {
+                throw new AdminException("tapez votre mot de passe svp ");
+            }
+            if (admin.getPass().length() > 30) {
+                throw new AdminException("mot de passe  est trop long");
+            }
+           
+            if (motdepasse2.equals("")) {
+                throw new AdminException("retapez votre  mot de passe svp ");
+            }
+            if (!motdepasse2.equals(admin.getPass())) {
+                throw new AdminException(" les deux mot de passe ne sont pas identique");
+            }
+            
+            admindao.ajoutAdministrateur(admin);
+            JOptionPane.showMessageDialog(null, "admin ajouter", "OK", JOptionPane.OK_CANCEL_OPTION);
+            cmdValiderInscri.setEnabled(true);//ouis chager fase
+         
+        } catch (AdminException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        } 
+         if (combox1.getSelectedItem().toString().equals("gerant")) { 
+            
+            
+        Gerant gerant= new Gerant();
+          gerant.setPrenom(TfPrenom.getText().toString());
+        gerant.setNom(TfNom.getText().toString());
+       gerant.setEmail(TfEmail.getText().toString());
+        // admin.setDateNaissance(tfDateChooser1.getDateFormatString());
+    gerant.setTelephone(TfTel.getText());
+        gerant.setPass(TfMP1.getText().toString());
+        gerant.setAdresse(TfAdr.getText().toString());
+        gerant.setTelephone(TfTel.getText());
+     
+         gerant.setLogin(TfLogin.getText().toString());
+        
+        String motdepasse2 = motDePasse2.getText().toString();
+        
+        
+       GerantDAO gerantDAO= new GerantDAO  ();
+       
+        
+
+        try {
+
+            if (gerant.getNom().equals("")) {
+                throw new AdminException("svp ! tapez votre nom");
+            }
+            
+            if (gerant.getNom().length() > 30) {
+                throw new AdminException("nom est trop long");
+            }
+            if (gerant.getPrenom().equals("")) {
+
+                throw new AdminException("Tapez votre Prenom svp ");
+            }
+            if (gerant.getPrenom().length() > 30) {
+                throw new AdminException("prenom est trop long");
+            }
+            if (gerant.getTelephone().equals("")) {
+
+                throw new AdminException("Tapez votre Telephone svp ");
+            }
+            if (gerant.getTelephone().length() > 30) {
+                throw new AdminException("Telephone est trop long");
+            }
+            if (gerant.getEmail().equals("")) {
+
+                throw new AdminException("Tapez votre Emailsvp ");
+            }
+            if (gerant.getEmail().length() > 30) {
+                throw new AdminException("Email est trop long");
+            }
+             if (gerant.getAdresse().equals("")) {
+
+                throw new AdminException("Tapez votre Adresse svp ");
+            }
+            if (gerant.getAdresse().length() > 30) {
+                throw new AdminException("Adresse est trop long");
+            }
+            
+             if (gerant.getLogin().equals("")) {
+                throw new AdminException("tapez votre Login de passe svp ");
+            }
+            if (gerant.getLogin().length() > 30) {
+                throw new AdminException("login est trop long");
+            }
+              if (gerant.getPass().equals("")) {
+                throw new AdminException("tapez votre mot de passe svp ");
+            }
+            if (gerant.getPass().length() > 30) {
+                throw new AdminException("mot de passe  est trop long");
+            }
+           
+            if (motdepasse2.equals("")) {
+                throw new AdminException("retapez votre  mot de passe svp ");
+            }
+            if (!motdepasse2.equals(gerant.getPass())) {
+                throw new AdminException(" les deux mot de passe ne sont pas identique");
+            }
+            
+            gerantDAO.ajoutGerant(gerant);
+            JOptionPane.showMessageDialog(null, "gerant ajouter", "OK", JOptionPane.OK_CANCEL_OPTION);
+            cmdValiderInscri.setEnabled(true);//ouis chager false
+         
+        } catch (AdminException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        }           
+
+    }//GEN-LAST:event_cmdValiderInscriActionPerformed
+
+    private void motDePasse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_motDePasse2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_motDePasse2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,12 +654,19 @@ public class Insription extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JTextField TfAdr;
+    private javax.swing.JTextField TfEmail;
+    private javax.swing.JTextField TfLogin;
+    private javax.swing.JPasswordField TfMP1;
+    private javax.swing.JTextField TfNom;
+    private javax.swing.JTextField TfPrenom;
+    private javax.swing.JTextField TfTel;
+    private javax.swing.JButton cmdValiderInscri;
+    private javax.swing.JComboBox combox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -268,12 +674,6 @@ public class Insription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JPasswordField motDePasse2;
     // End of variables declaration//GEN-END:variables
 }
